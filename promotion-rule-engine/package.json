@@ -1,0 +1,20 @@
+{
+  "name": "promotion-rule-engine",
+  "version": "1.0.0",
+  "description": "A REST microservice for evaluating promotions based on configurable business rules.",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "yamljs": "^0.3.0",
+    "body-parser": "^1.19.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,23 @@
+conditions:
+  - attribute: "level"
+    operator: ">="
+    value: 10
+    promotion: 
+      name: "Gold Promotion"
+      discount: 20
+  - attribute: "level"
+    operator: "<"
+    value: 10
+    promotion: 
+      name: "Silver Promotion"
+      discount: 10
+  - attribute: "loyaltyPoints"
+    operator: ">="
+    value: 100
+    promotion: 
+      name: "Platinum Promotion"
+      discount: 30
+
+defaultPromotion:
+  name: "No Promotion"
+  discount: 0
