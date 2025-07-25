@@ -1,22 +1,22 @@
-conditions:
-  - attribute: "level"
-    operator: ">="
-    value: 10
-    promotion: 
+rules:
+  - condition:
+      level:
+        min: 10
+        max: 20
+      country: US
+      daysSinceLastPurchase:
+        min: 5
+    promotion:
       name: "Gold Promotion"
       discount: 20
-  - attribute: "level"
-    operator: "<"
-    value: 10
-    promotion: 
+  - condition:
+      level:
+        min: 1
+        max: 9
+      country: US
+    promotion:
       name: "Silver Promotion"
       discount: 10
-  - attribute: "loyaltyPoints"
-    operator: ">="
-    value: 100
-    promotion: 
-      name: "Platinum Promotion"
-      discount: 30
 
 defaultPromotion:
   name: "No Promotion"
