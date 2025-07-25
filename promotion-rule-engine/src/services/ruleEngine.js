@@ -2,10 +2,13 @@ class RuleEngine {
     constructor(yamlLoader) {
         this.yamlLoader = yamlLoader;
         this.rules = [];
+        this.defaultPromotion = null;
     }
 
     loadRules(filePath) {
-        this.rules = this.yamlLoader.loadYaml(filePath);
+        const yamlData = this.yamlLoader.loadYaml(filePath);
+        this.rules = yamlData.rules || [];
+        this.defaultPromotion = yamlData.defaultPromotion || null;
     }
 
     evaluateRules(playerAttributes) {
@@ -14,13 +17,21 @@ class RuleEngine {
                 return rule.promotion;
             }
         }
-        return null;
+        return this.defaultPromotion;
     }
 
     evaluateCondition(condition, playerAttributes) {
-        // Implement condition evaluation logic based on playerAttributes
-        // This is a placeholder for actual condition evaluation
-        return true; // Replace with actual logic
+        for (const key in condition) {
+            const condValue = condition[key];
+            const playerValue = playerAttributes[key];
+            if (typeof condValue === 'object' && condValue !== null) {
+                if (condValue.min !== undefined && playerValue < condValue.min) return false;
+                if (condValue.max !== undefined && playerValue > condValue.max) return false;
+            } else {
+                if (playerValue === undefined || playerValue !== condValue) return false;
+            }
+        }
+        return true;
     }
 
     hotReloadRules(filePath) {
